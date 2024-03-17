@@ -1,7 +1,6 @@
-gunicorn
-streamlit
-b2sdk 
 pandas
+streamlit
 altair
+b2sdk 
 python-dotenv
 
