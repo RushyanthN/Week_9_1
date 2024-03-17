@@ -32,7 +32,7 @@ def load_data(b2):
     df['day_month_year'] = df['date'].dt.strftime('%d/%m/%Y')   
     return df
 
-def app():
+def app(b2):
     # Load data
     st.title("Sentiment Confidence by Day")
     df = load_data(b2)
@@ -55,4 +55,4 @@ def app():
     st.write(df)
 
 if __name__ == "__main__":
-    app()
+    app(b2)
