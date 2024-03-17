@@ -9,8 +9,8 @@ from dotenv import load_dotenv
 load_dotenv()
 b2 = B2Api()
 
-application_key_id = os.getenv('application_key_id')
-application_key = os.getenv('application_key')
+application_key_id = os.getenv('keyID')
+application_key = os.getenv('applicationKey')
 
 
 
