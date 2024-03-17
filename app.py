@@ -12,7 +12,6 @@ b2 = B2Api()
 application_key_id = os.getenv('application_key_id')
 application_key = os.getenv('application_key')
 
-
 b2.authorize_account("production", application_key_id, application_key)
 bucket = b2.get_bucket_by_name("Rushyfirstbucket")
 
@@ -24,7 +23,7 @@ def load_data():
     df['day_month_year'] = df['date'].dt.strftime('%d/%m/%Y')   
     return df
 
-def app():
+def app(environ, start_response):
     st.title("Sentiment Confidence by Day")
     df = load_data()
     df = df.rename(columns={'sentiment:confidence': 'sentiment_confidence'})
@@ -40,7 +39,24 @@ def app():
         height=500
     ).interactive()
 
-    st.altair_chart(chart, use_container_width=True)
+    body = st.altair_chart(chart, use_container_width=True)
+
+    # Converting the Streamlit output to WSGI-compatible
+    response_body = body.encode("utf-8")
+    status = "200 OK"
+    response_headers = [("Content-Type", "text/html"), ("Content-Length", str(len(response_body)))]
+    start_response(status, response_headers)
+    
+    return [response_body]
+
+# This block is required for Streamlit to properly run on Gunicorn
+from streamlit.report_thread import REPORT_CONTEXT_ATTR_NAME
+from streamlit.server.server import Server
+
+ctx = getattr(Server, REPORT_CONTEXT_ATTR_NAME, None)
+
+if ctx is not None:
+    ctx.session_main = True
 
 if __name__ == "__main__":
-    app()
+    app(None, None)  # Simulating WSGI environment when running locally
