@@ -18,9 +18,9 @@ application_key = os.getenv('applicationKey')
 # Authorize B2 account
 b2.authorize_account("production", application_key_id, application_key)
 
-def load_data(b2):
+def load_data(b2,bucket_name):
     # Get the bucket
-    bucket = b2.get_bucket_by_name("Rushyfirstbucket")
+    bucket = b2.get_bucket_by_name(bucket_name)
 
     # Download file from Backblaze B2 bucket
     with open("Apple-Twitter-Sentiment-DFE.csv", 'rb') as file:
@@ -32,10 +32,10 @@ def load_data(b2):
     df['day_month_year'] = df['date'].dt.strftime('%d/%m/%Y')   
     return df
 
-def app(b2):
+def app(b2,bucket_name):
     # Load data
     st.title("Sentiment Confidence by Day")
-    df = load_data(b2)
+    df = load_data(b2,bucket_name)
     df = df.rename(columns={'sentiment:confidence': 'sentiment_confidence'})
     sentiment_by_day = df.groupby('day_month_year')['sentiment_confidence'].mean().reset_index()
     
@@ -55,4 +55,4 @@ def app(b2):
     st.write(df)
 
 if __name__ == "__main__":
-    app(b2)
+    app(b2,"Rushyfirstbucket")
