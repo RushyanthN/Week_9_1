@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 import altair as alt
 import os
-import b2
+import b2sdk
 from b2sdk.v2 import B2Api
 from dotenv import load_dotenv
 load_dotenv()
