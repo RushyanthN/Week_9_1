@@ -1,0 +1,7 @@
+gunicorn
+streamlit
+b2sdk 
+pandas
+altair
+python-dotenv
+
