@@ -6,7 +6,7 @@ import b2sdk
 from b2sdk.v2 import B2Api
 from dotenv import load_dotenv
 load_dotenv()
-
+#now_it should work
 application_key_id = os.getenv('application_key_id')
 application_key = os.getenv('application_key')
 
