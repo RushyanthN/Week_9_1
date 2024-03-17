@@ -3,20 +3,16 @@ import streamlit as st
 import altair as alt
 import os
 import b2sdk
-from dotenv import load_dotenv
-load_dotenv()
-#now_it should work
-
-from b2sdk.v2 import InMemoryAccountInfo
-info = InMemoryAccountInfo()
 from b2sdk.v2 import B2Api
-b2 = B2Api(info)
+from dotenv import load_dotenv
+
+load_dotenv()
+b2 = B2Api()
 
 application_key_id = os.getenv('application_key_id')
 application_key = os.getenv('application_key')
 
 
-#b2 = B2Api()
 b2.authorize_account("production", application_key_id, application_key)
 bucket = b2.get_bucket_by_name("Rushyfirstbucket")
 
