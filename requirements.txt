@@ -3,4 +3,3 @@ streamlit
 altair
 b2sdk 
 python-dotenv
-
