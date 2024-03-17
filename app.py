@@ -2,6 +2,7 @@ import pandas as pd
 import streamlit as st
 import altair as alt
 import os
+import b2sdk
 from b2sdk.v2 import B2Api
 from dotenv import load_dotenv
 
@@ -12,7 +13,8 @@ application_key_id = os.getenv('keyID')
 application_key = os.getenv('applicationKey')
 b2.authorize_account("production", application_key_id, application_key)
 
-def load_data():
+
+def load_data(b2):
     bucket = b2.get_bucket_by_name("Rushyfirstbucket")
     with open("Apple-Twitter-Sentiment-DFE.csv", 'rb') as file:
         bucket.download_file_by_name("Apple-Twitter-Sentiment-DFE.csv", file)
@@ -41,7 +43,6 @@ def app():
     ).interactive()
 
     st.altair_chart(chart, use_container_width=True)
-    st.write(df)
 
 if __name__ == "__main__":
     app()
