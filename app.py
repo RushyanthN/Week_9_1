@@ -10,8 +10,8 @@ from b2sdk.exception import FileNotPresent
 load_dotenv()
 b2 = B2Api()
 
-application_key_id = st.secrets('keyID')
-application_key = st.secrets('applicationKey')
+application_key_id = st.secrets['keyID']
+application_key = st.secrets['applicationKey']
 
 b2.authorize_account("production", application_key_id, application_key)
 
