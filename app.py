@@ -11,7 +11,7 @@ b2 = B2Api()
 
 application_key_id = os.getenv('keyID')
 application_key = os.getenv('applicationKey')
-b2.authorize_account("production", application_key_id, application_key)
+b2.authorize_account(application_key_id, application_key)
 
 
 def load_data(b2):
