@@ -6,12 +6,14 @@ import b2
 from b2sdk.v2 import B2Api
 from dotenv import load_dotenv
 from b2sdk.exception import FileNotPresent
+
 load_dotenv()
 b2 = B2Api()
 
-application_key_id = os.getenv('keyID')
-application_key = os.getenv('applicationKey')
-b2.authorize_account(application_key_id, application_key)
+application_key_id = st.secrets('keyID')
+application_key = st.secrets('applicationKey')
+
+b2.authorize_account("production", application_key_id, application_key)
 
 
 def load_data(b2):
