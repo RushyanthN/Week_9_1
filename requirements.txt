@@ -2,5 +2,6 @@ gunicorn
 pandas
 streamlit
 altair
+b2
 b2sdk 
 python-dotenv
