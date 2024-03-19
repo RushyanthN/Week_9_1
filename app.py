@@ -6,7 +6,6 @@ import b2
 from b2sdk.v2 import B2Api
 from dotenv import load_dotenv
 from b2sdk.exception import FileNotPresent
-
 load_dotenv()
 b2 = B2Api()
 
