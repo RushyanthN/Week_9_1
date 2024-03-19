@@ -5,6 +5,7 @@ cachetools
 decorator
 exceptiongroup
 gitdb
+gunicorn
 GitPython
 idna
 ipykernel
