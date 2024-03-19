@@ -9,11 +9,10 @@ from b2sdk.exception import FileNotPresent
 
 load_dotenv()
 
-
-#application_key_id = os.getenv('keyID')
-#application_key = os.getenv('applicationKey')
+application_key_id = os.getenv('keyID')
+application_key = os.getenv('applicationKey')
 b2 = B2Api()
-b2.authorize_account("production", st.secrets['keyID'], st.secrets['applicationKey'])
+b2.authorize_account("production",application_key_id , application_key)
 
 
 def load_data(b2):
